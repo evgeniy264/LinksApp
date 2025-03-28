@@ -1,0 +1,30 @@
+﻿@model LinksApp.Models.Link
+
+@{
+    string? linkGuid = Model.Guid;
+}
+@if(Model.File_name!=null){
+    <form method="get" asp-action="Get" asp-controller="Home" asp-route-linkGuid="@linkGuid" enctype="multipart/form-data">
+        <div>
+            <p>
+                <input type="submit" class="custom-button" value="Получить" />
+            </p>
+        </div>
+        <div id="textBox"></div>
+    </form>
+}
+@if (Model.Text_content != null) {
+    <form method="get" asp-action="Get" asp-controller="Home" asp-route-linkGuid="@linkGuid" enctype="multipart/form-data" data-ajax="true" data-ajax-method="get" data-ajax-url="@Url.Action("Get", "Home", new { linkGuid = @linkGuid })" data-ajax-update="#textBox" data-ajax-mode='replace'>
+        <div>
+            <p>
+                <input type="submit" class="custom-button" value="Получить" />
+            </p>
+        </div>
+        <div id="textBox"></div>
+    </form>
+}
+
+@section scripts {
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+}

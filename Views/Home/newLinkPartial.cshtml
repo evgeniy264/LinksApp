@@ -1,0 +1,47 @@
+﻿@model LinksApp.Models.Link
+
+@{
+    
+
+    string? linkTextGuid = TempData["LinkTextGuid"] != null ? (string?)TempData["LinkTextGuid"] : null;
+    string? linkFileGuid = TempData["LinkFileGuid"] != null ? (string?)TempData["LinkFileGuid"] : null;
+}
+
+<div id="loadedContent">
+    @if (linkTextGuid != null)
+    {
+        <p>
+            <label>Ссылка на текст:</label><br />
+            <a id="linkTextGuid" href="link/@linkTextGuid">link/@linkTextGuid</a> <button id="textButton" class="copy-button">Скопировать</button>
+
+        </p>
+    }
+    @if (linkFileGuid != null){
+    <p>
+        <label>Ссылка на файл:</label><br />
+            <a id="linkFileGuid" href="link/@linkFileGuid">link/@linkFileGuid</a> <button id="fileButton" class="copy-button">Скопировать</button>
+    </p>
+    }
+</div>
+
+<script type="text/javascript">
+        const targetText = document.getElementById("linkTextGuid");
+        const buttonText = document.getElementById("textButton");
+        const targetFile = document.getElementById("linkFileGuid");
+        const buttonFile = document.getElementById("fileButton");
+        if(buttonText){
+            buttonText.addEventListener(`click`, async (e) => {
+                e.preventDefault();
+                await navigator.clipboard.writeText(targetText.innerText)
+        });
+        }
+        if(buttonFile){
+            buttonFile.addEventListener(`click`, async (e) => {
+            e.preventDefault();
+                await navigator.clipboard.writeText(targetFile.innerText)
+        });
+        }
+
+</script>
+  
+
