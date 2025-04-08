@@ -6,29 +6,23 @@
 <div>
 	@if (decrypted_text_content != null)
 	{
-        <p>
-			<label asp-for="Text_content">Расшифрованный текст</label><br />
-
-            @Html.TextArea("Text_content", decrypted_text_content, new { @class = "text" }) <button id="textButton" class="copy-button">Скопировать</button>
- 		</p>
+		<p>
+			<h3>
+				<label asp-for="Text_content" class="label label-default">Расшифрованный текст</label><br />
+			</h3>
+			@Html.TextArea("Text_content", decrypted_text_content, new { @class = "text" }) <button id="textButton" class="copy-button">Скопировать</button>
+		</p>
 	}
 </div>
-<script type="text/javascript">
-        
-            const targetText = document.getElementById("Text_content");
-            const buttonText = document.getElementById("textButton");
-            
-           
-            if(buttonText){
-                
-                buttonText.addEventListener(`click`, async (e) => {
-                    e.preventDefault();
-                    
-                    await navigator.clipboard.writeText(targetText.value)
-                   
-            });
-            }
-            
 
+<script type="text/javascript">
+	const targetText = document.getElementById("Text_content");
+	const buttonText = document.getElementById("textButton");
+	if(buttonText){
+		buttonText.addEventListener(`click`, async (e) => {
+			e.preventDefault();
+			await navigator.clipboard.writeText(targetText.value)
+		});
+	}
 </script>
 

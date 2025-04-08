@@ -2,12 +2,8 @@
 
 namespace LinksApp.Models
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext(DbContextOptions<ApplicationContext> options) : DbContext(options)
     {
-        public DbSet<Link> Links { get; set; } = null!;
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) 
-        {
-           
-        }
+        public DbSet<Link> Links { get; set; }
     }
 }

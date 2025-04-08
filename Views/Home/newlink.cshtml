@@ -1,36 +1,61 @@
-﻿@model LinksApp.Models.Link 
+﻿@model LinksApp.Models.Link
 
 @{
 }
 
-<form  method="post"  asp-controller="Home" asp-action="Create"  enctype="multipart/form-data" data-ajax="true"  data-ajax-method="post"   data-ajax-url="@Url.Action("Create","Home")"  data-ajax-update="#panel" data-ajax-mode='replace'>
-
-    <div>
-        
-        <p>
-            <label asp-for="Text_content">Текст</label><br />
-            @Html.TextArea("Text_content", new { @class = "text", required = "required", title = "Заполните текст" })
-            <span asp-validation-for="Text_content" class="text-danger"></span><br />
-
-        </p>
-        <p>
-            <label asp-for="Days_of_active">Время действия ссылки(дней)</label><br />
-            @Html.TextBox("Days_of_active", 7, new { @class = "text"})
-            <span asp-validation-for="Days_of_active" />
-        </p>
-        <p>
-            <input type="file" name="file" class="file-upload" /><br />
-        </p>
-        <p>
-            <input type="submit" class="custom-button" value="Получить ссылку" />
-        </p>   
-    </div>
-    <div id="panel"></div>
+<form method="post" asp-controller="Home" asp-action="Create" enctype="multipart/form-data" data-ajax="true" data-ajax-method="post" data-ajax-url="@Url.Action("Create","Home")" data-ajax-update="#panelText" data-ajax-mode='replace'>
+	<div>
+		<p>
+			<h3>
+				<span class="label label-primary">Создание ссылки для текста:</span>
+			</h3>
+			<h3>
+				<label asp-for="Text_content" class="label label-default">Текст</label>
+			</h3>
+			@Html.TextArea("Text_content", new { @class = "text", required = "required", title = "Заполните текст" })
+			<span asp-validation-for="Text_content" class="text-danger"></span>
+		</p>
+		<h3>
+			<label asp-for="Days_of_active_text" class="label label-default">Время действия ссылки для текста(дней)</label>
+		</h3>
+		<p>
+			@Html.TextBox("Days_of_active_text", 7, new { @class = "text" })
+			<span asp-validation-for="Days_of_active_text" />
+		</p>
+		<p>
+			<input type="submit" class="custom-button" value="Получить ссылку" />
+		</p>
+	</div>
+	<div id="panelText"></div>
 </form>
+<br />
+
+
+<form method="post" asp-controller="Home" asp-action="Create" enctype="multipart/form-data" data-ajax="true" data-ajax-method="post" data-ajax-url="@Url.Action("Create","Home")" data-ajax-update="#panelFile" data-ajax-mode='replace'>
+	<div>
+		<p>
+			<h3>
+				<span class="label label-primary">Создание ссылки для файла:</span>
+			</h3><br />
+			<input type="file" name="file" class="file-upload" />
+		</p>
+		<h3>
+			<label asp-for="Days_of_active_file" class="label label-default">Время действия ссылки для файла(дней)</label>
+		</h3>
+		<p>
+			@Html.TextBox("Days_of_active_file", 7, new { @class = "text" })
+			<span asp-validation-for="Days_of_active_file" />
+		</p>
+		<p>
+			<input type="submit" class="custom-button" value="Получить ссылку" />
+		</p>
+	</div>
+	<div id="panelFile"></div>
+</form>
+
 @section scripts {
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
-  
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
 }
